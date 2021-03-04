@@ -41,7 +41,7 @@ export const RegisterView = () => {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block mb-5"
+                    className="btn btn-primary btn-block mt-5 mb-5"
                 >
                     Register
                 </button>

@@ -53,13 +53,13 @@ export const LoginView = () => {
 
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block mt-5"
                 >
                     Login
                 </button>
 
 
-                <div className="auth__social-networks">
+                <div className="auth__social-networks mt-5">
                     <p>Login with social networks</p>
 
                     <div className="google-btn">
@@ -67,7 +67,7 @@ export const LoginView = () => {
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                         </div>
                         <p className="btn-text">
-                            <b>Sign in with google</b>
+                            Sign in with google
                         </p>
                     </div>
                 </div>
