@@ -1,12 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import validator from 'validator';
+
+import {useForm} from "../../hooks/useForm";
+import {setError, removeError } from "../../actions/uiAction";
+
 
 export const RegisterView = () => {
+    const dispatch = useDispatch();
+
+    const [values, handleInputChange] = useForm({name:'', email:'', password:'', password2:''});
+
+    const {name, email, password, password2} = values;
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+        isFormValid();
+        console.log(values)
+    }
+
+    const isFormValid = () => {
+        if (name.trim().length === 0){
+            dispatch(setError("Name required") )
+            return false
+        } else if ( !validator.isEmail(email) ) {
+            dispatch( setError('Email is not valid') )
+            return false
+        } else if (password !== password2 || password.length < 5) {
+            dispatch( setError('Password should be at least 6 characters and match each other') )
+            return false
+        }
+
+        dispatch(removeError());
+
+        return true
+    }
+
     return (
         <>
             <h3 className="auth__title">Register</h3>
 
-            <form>
+            <form onSubmit={handleRegister}>
 
                 <input
                     type="text"
@@ -14,6 +49,8 @@ export const RegisterView = () => {
                     name="name"
                     className="auth__input"
                     autoComplete="off"
+                    value={name}
+                    onChange={handleInputChange}
                 />
 
                 <input
@@ -22,6 +59,8 @@ export const RegisterView = () => {
                     name="email"
                     className="auth__input"
                     autoComplete="off"
+                    value={email}
+                    onChange={handleInputChange}
                 />
 
                 <input
@@ -29,6 +68,8 @@ export const RegisterView = () => {
                     placeholder="Password"
                     name="password"
                     className="auth__input"
+                    value={password}
+                    onChange={handleInputChange}
                 />
 
                 <input
@@ -36,6 +77,8 @@ export const RegisterView = () => {
                     placeholder="Confirm password"
                     name="password2"
                     className="auth__input"
+                    value={password2}
+                    onChange={handleInputChange}
                 />
 
 
